@@ -29,7 +29,7 @@ extern void LCDSetRect(int x0, int y0, int x1, int y1, unsigned char fill, int c
 extern void LCDSetCircle(int x0, int y0, int radius, int color);
 extern void LCDPutChar(char c, int  x, int  y, int size, int fcolor, int bcolor);
 extern void LCDPutString (char *lcd_string, const char *font_style, unsigned char x, unsigned char y,
-                   unsigned char fcolor, unsigned char bcolor);
+			  unsigned char fcolor, unsigned char bcolor);
 extern void LCDPutStr(char *pString, int  x, int  y, int Size, int fColor, int bColor);
 
 //char ciag[];
@@ -64,789 +64,962 @@ int czek=3800;
 #define BUZ_OFF AT91C_BASE_PIOB->PIO_SODR = AT91C_PIO_PB19; //  nie ma dzwieku
 
 //Funkcje
+
+
+
+
+
 void Voice(int t,int dd)
 {
-				i=0;
-				t=t*dd;
-				while(i<t)
-				{	
-					i++;
-					U=GetAdcChanel(ADC_CHN_7);
-					U=((U*3.3)/1023);
+  i=0;
+  t=t*dd;
+  while(i<t)
+    {	
+      i++;
+      U=GetAdcChanel(ADC_CHN_7);
+      U=((U*3.3)/1023);
 					
-					czekaj=U*200;
+      czekaj=U*200;
 					
-					BUZ_ON;
-					delay_us(czekaj); //Generuje dzwiek
-					BUZ_OFF;
-					delay_us(czekaj); 
-				}
+      BUZ_ON;
+      delay_us(czekaj); //Generuje dzwiek
+      BUZ_OFF;
+      delay_us(czekaj); 
+    }
 }
-
+(
 void puste()
 {
-					U=GetAdcChanel(ADC_CHN_7);
-					U=((U*3.3)/1023);
+  U=GetAdcChanel(ADC_CHN_7);
+  U=((U*3.3)/1023);
 					
-					czekaj=U*czek;					
-					delay_us(czekaj);
+  czekaj=U*czek;					
+  delay_us(czekaj);
 }
 
 //Przy kazdym znaku nastepuje spacja
 
 void spacja()
 {
-		puste();
-		puste();
-		puste();
-		puste();
-		puste();
-		puste();
+  puste();
+  puste();
+  puste();
+  puste();
+  puste();
+  puste();
 }
 
 void krotkie()
 {
-				dd=krot;
-				Voice(t,dd);
-				puste();
+  dd=krot;
+  Voice(t,dd);
+  puste();
 }
 
 void dlugie()
 {
-				dd=dlug;
-				Voice(t,dd);
-				puste();
+  dd=dlug;
+  Voice(t,dd);
+  puste();
 }
 
 //Alfabet
 
 void _A()
 {
-				krotkie();
-				dlugie();
-				spacja();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _B()
 {				
-				dlugie();
-				krotkie();
-				krotkie();
-				krotkie();
-				spacja();
+  dlugie();
+  krotkie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _C()
 {
-				dlugie();
-				krotkie();
-				dlugie();
-				krotkie();
-				spacja();
+  dlugie();
+  krotkie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _D()
 {
-				dlugie();
-				krotkie();
-				krotkie();
-				spacja();
+  dlugie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _E()
 {
-				krotkie();
-				spacja();
+  krotkie();
+  spacja();
 }
 
 void _F()
 {
-				krotkie();
-				krotkie();
-				dlugie();
-				krotkie();
-				spacja();
+  krotkie();
+  krotkie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _G()
 {
-				dlugie();
-				dlugie();
-				krotkie();
-				spacja();
+  dlugie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _H()
 {
-				krotkie();
-				krotkie();
-				krotkie();
-				krotkie();
-				spacja();
+  krotkie();
+  krotkie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _I()
 {
-				krotkie();
-				krotkie();
-				spacja();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _J()
 {
-				krotkie();
-				dlugie();
-				dlugie();
-				dlugie();
-				spacja();
+  krotkie();
+  dlugie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _K()
 {
-				dlugie();
-				krotkie();
-				dlugie();
-				spacja();
+  dlugie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _L()
 {
-				krotkie();
-				dlugie();
-				krotkie();
-				krotkie();
-				spacja();
+  krotkie();
+  dlugie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _M()
 {
-				dlugie();
-				dlugie();
-				spacja();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _N()
 {
-				dlugie();
-				krotkie();
-				spacja();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _O()
 {
-				dlugie();
-				dlugie();
-				dlugie();
-				spacja();
+  dlugie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _P()
 {
-				krotkie();
-				dlugie();
-				dlugie();
-				krotkie();
-				spacja();
+  krotkie();
+  dlugie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _Q()
 {
-				dlugie();
-				dlugie();
-				krotkie();
-				dlugie();
-				spacja();
+  dlugie();
+  dlugie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _R()
 {
-				krotkie();
-				dlugie();
-				krotkie();
-				spacja();
+  krotkie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _S()
 {
-				krotkie();
-				krotkie();
-				krotkie();
-				spacja();
+  krotkie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _T()
 {
-				dlugie();
-				spacja();
+  dlugie();
+  spacja();
 }
 
 void _U()
 {
-				krotkie();
-				krotkie();
-				dlugie();
-				spacja();
+  krotkie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _V()
 {
-				krotkie();
-				krotkie();
-				krotkie();
-				dlugie();
-				spacja();
+  krotkie();
+  krotkie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _W()
 {
-				krotkie();
-				dlugie();
-				dlugie();
-				spacja();
+  krotkie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _X()
 {
-				dlugie();
-				krotkie();
-				krotkie();
-				dlugie();
-				spacja();
+  dlugie();
+  krotkie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _Y()
 {
-				dlugie();
-				krotkie();
-				dlugie();
-				dlugie();
-				spacja();
+  dlugie();
+  krotkie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _Z()
 {
-				dlugie();
-				dlugie();
-				krotkie();
-				krotkie();
-				spacja();
+  dlugie();
+  dlugie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 //znaki narodowe
 
 void _om()
 {							
-				krotkie();
-				dlugie();
-				krotkie();
-				dlugie();
-				spacja();
+  krotkie();
+  dlugie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _ci()
 {
-				dlugie();
-				krotkie();
-				dlugie();
-				krotkie();
-				krotkie();
-				spacja();
+  dlugie();
+  krotkie();
+  dlugie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _em()
 {
-				krotkie();
-				krotkie();
-				dlugie();
-				krotkie();
-				krotkie();
-				spacja();
+  krotkie();
+  krotkie();
+  dlugie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _ch()
 {
-				dlugie();
-				dlugie();
-				dlugie();
-				dlugie();
-				spacja();
+  dlugie();
+  dlugie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _ni()
 {
-				dlugie();
-				dlugie();
-				krotkie();
-				dlugie();
-				dlugie();
-				spacja();
+  dlugie();
+  dlugie();
+  krotkie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _ly()
 {
-				krotkie();
-				dlugie();
-				krotkie();
-				krotkie();
-				dlugie();
-				spacja();
+  krotkie();
+  dlugie();
+  krotkie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _uu()
 {
-				dlugie();
-				dlugie();		
-				dlugie();
-				krotkie();
-				spacja();
+  dlugie();
+  dlugie();		
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _si()
 {
-				krotkie();
-				krotkie();
-				krotkie();
-				dlugie();
-				krotkie();
-				krotkie();
-				krotkie();
-				spacja();
+  krotkie();
+  krotkie();
+  krotkie();
+  dlugie();
+  krotkie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _zy()
 {
-				dlugie();
-				dlugie();
-				krotkie();
-				krotkie();
-				dlugie();
-				krotkie();
-				spacja();
+  dlugie();
+  dlugie();
+  krotkie();
+  krotkie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _zi()
 {
-				dlugie();
-				dlugie();
-				krotkie();
-				krotkie();
-				dlugie();
-				spacja();
+  dlugie();
+  dlugie();
+  krotkie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 //Cyfry
 
 void _jeden()
 {
-			krotkie();
-			dlugie();
-			dlugie();
-			dlugie();
-			dlugie();
-			spacja();
+  krotkie();
+  dlugie();
+  dlugie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _dwa()
 {
-			krotkie();
-			krotkie();
-			dlugie();
-			dlugie();
-			dlugie();
-			spacja();
+  krotkie();
+  krotkie();
+  dlugie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _trzy()
 {
-			krotkie();
-			krotkie();
-			krotkie();
-			dlugie();
-			dlugie();
-			spacja();
+  krotkie();
+  krotkie();
+  krotkie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _cztery()
 {
-			krotkie();
-			krotkie();
-			krotkie();
-			krotkie();
-			dlugie();
-			spacja();
+  krotkie();
+  krotkie();
+  krotkie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _piec()
 {
-			krotkie();
-			krotkie();
-			krotkie();
-			krotkie();
-			krotkie();
-			spacja();
+  krotkie();
+  krotkie();
+  krotkie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _szesc()
 {
-			dlugie();
-			krotkie();
-			krotkie();
-			krotkie();
-			krotkie();
-			spacja();
+  dlugie();
+  krotkie();
+  krotkie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _siedem()
 {
-			dlugie();
-			dlugie();
-			krotkie();
-			krotkie();
-			krotkie();
-			spacja();
+  dlugie();
+  dlugie();
+  krotkie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _osiem()
 {
-			dlugie();
-			dlugie();
-			dlugie();
-			krotkie();
-			krotkie();
-			spacja();
+  dlugie();
+  dlugie();
+  dlugie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _dziewiec()
 {
-			dlugie();
-			dlugie();
-			dlugie();
-			dlugie();
-			krotkie();
-			spacja();
+  dlugie();
+  dlugie();
+  dlugie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _zero()
 {
-			dlugie();
-			dlugie();
-			dlugie();
-			dlugie();
-			dlugie();
-			spacja();
+  dlugie();
+  dlugie();
+  dlugie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 //znaki interpunkcyjne i symbole
 
 void _kropka()
 {
-		krotkie();
-		dlugie();
-		krotkie();
-		dlugie();
-		krotkie();
-		dlugie();
-		spacja();
+  krotkie();
+  dlugie();
+  krotkie();
+  dlugie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _przecinek()
 {
-		dlugie();
-		dlugie();
-		krotkie();
-		krotkie();
-		dlugie();
-		dlugie();
-		spacja();
+  dlugie();
+  dlugie();
+  krotkie();
+  krotkie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _pojedynczy_apostrof()
 {
-		krotkie();
-		dlugie();
-		dlugie();
-		dlugie();
-		dlugie();
-		krotkie();
-		spacja();
+  krotkie();
+  dlugie();
+  dlugie();
+  dlugie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _cudzyslow()
 {
-		krotkie();
-		dlugie();
-		krotkie();
-		krotkie();
-		dlugie();
-		krotkie();
-		spacja();
+  krotkie();
+  dlugie();
+  krotkie();
+  krotkie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _podkreslenie()
 {
-		krotkie();
-		krotkie();
-		dlugie();
-		dlugie();
-		krotkie();
-		dlugie();
-		spacja();
+  krotkie();
+  krotkie();
+  dlugie();
+  dlugie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _dwukropek()
 {
-		dlugie();
-		dlugie();
-		dlugie();
-		krotkie();
-		krotkie();
-		krotkie();
-		spacja();
+  dlugie();
+  dlugie();
+  dlugie();
+  krotkie();
+  krotkie();
+  krotkie();
+  spacja();
 }
-
-void _srednik()
+;void _srednik()
 {
-		dlugie();
-		krotkie();
-		dlugie();
-		krotkie();
-		dlugie();
-		krotkie();
-		spacja();
+  dlugie();
+  krotkie();
+  dlugie();
+  krotkie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _znak_zapytania()
 {
-		krotkie();
-		krotkie();
-		dlugie();
-		dlugie();
-		krotkie();
-		krotkie();
-		spacja();
+  krotkie();
+  krotkie();
+  dlugie();
+  dlugie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _wykrzyknik()
 {
-		dlugie();
-		krotkie();
-		dlugie();
-		krotkie();
-		dlugie();
-		dlugie();
-		spacja();
+  dlugie();
+  krotkie();
+  dlugie();
+  krotkie();
+  dlugie();
+  dlugie();
+  spacja();
 }
 
 void _myslnik()
 {
-		dlugie();
-		krotkie();
-		krotkie();
-		krotkie();
-		krotkie();
-		dlugie();
-		spacja();
+  dlugie();
+  krotkie();
+  krotkie();
+  krotkie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _plus()
 {
-		krotkie();
-		dlugie();
-		krotkie();
-		dlugie();
-		krotkie();
-		spacja();
+  krotkie();
+  dlugie();
+  krotkie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _ukosnik()
 {
-		dlugie();
-		krotkie();
-		krotkie();
-		dlugie();
-		krotkie();
-		spacja();
+  dlugie();
+  krotkie();
+  krotkie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _nawias_otwierajacy()
 {
-		dlugie();
-		krotkie();
-		dlugie();
-		dlugie();
-		krotkie();
-		spacja();
+  dlugie();
+  krotkie();
+  dlugie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _nawias_zamykajacy()
 {
-		dlugie();
-		krotkie();
-		dlugie();
-		dlugie();
-		krotkie();
-		dlugie();
-		spacja();
+  dlugie();
+  krotkie();
+  dlugie();
+  dlugie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _znak_rownosci()
 {
-		dlugie();
-		krotkie();
-		krotkie();	
-		krotkie();
-		dlugie();
-		spacja();
+  dlugie();
+  krotkie();
+  krotkie();	
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _malpa()
 {
-		krotkie();
-		dlugie();
-		dlugie();
-		krotkie();
-		dlugie();
-		krotkie();
-		spacja();
+  krotkie();
+  dlugie();
+  dlugie();
+  krotkie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 //komendy specjalne
 
 void _znak_rozdzialu()
 {
-		krotkie();
-		dlugie();
-		krotkie();
-		krotkie();
-		dlugie();
-		spacja();
+  krotkie();
+  dlugie();
+  krotkie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _poczatek_kontaktu()
 {
-		krotkie();
-		krotkie();	
-		krotkie();
-		dlugie();
-		krotkie();
-		krotkie();	
-		krotkie();
-		dlugie();
-		krotkie();
-		krotkie();	
-		krotkie();
-		dlugie();
-		spacja();
+  krotkie();
+  krotkie();	
+  krotkie();
+  dlugie();
+  krotkie();
+  krotkie();	
+  krotkie();
+  dlugie();
+  krotkie();
+  krotkie();	
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _poczatek_nadawania()
 {
-		dlugie();
-		krotkie();
-		dlugie();
-		krotkie();
-		dlugie();
-		spacja();
+  dlugie();
+  krotkie();
+  dlugie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _koniec_nadawania()
 {
-		krotkie();
-		dlugie();
-		krotkie();
-		dlugie();
-		krotkie();
-		spacja();
+  krotkie();
+  dlugie();
+  krotkie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _blad()
 {
-		krotkie();
-		krotkie();
-		krotkie();
-		krotkie();
-		krotkie();
-		krotkie();
-		krotkie();
-		krotkie();
-		spacja();
+  krotkie();
+  krotkie();
+  krotkie();
+  krotkie();
+  krotkie();
+  krotkie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _prosba_o_powtorzenie()
 {
-		krotkie();
-		krotkie();
-		dlugie();
-		dlugie();
-		krotkie();
-		krotkie();
-		spacja();
+  krotkie();
+  krotkie();
+  dlugie();
+  dlugie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _zrozumiano()
 {
-		krotkie();
-		krotkie();
-		krotkie();
-		dlugie();
-		krotkie();
-		spacja();
+  krotkie();
+  krotkie();
+  krotkie();
+  dlugie();
+  krotkie();
+  spacja();
 }
 
 void _czekaj()
 {
-		krotkie();
-		dlugie();
-		krotkie();	
-		krotkie();
-		krotkie();
-		spacja();
+  krotkie();
+  dlugie();
+  krotkie();	
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 void _wezwanie()
 {
-		dlugie();
-		krotkie();
-		dlugie();
-		spacja();
+  dlugie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _koniec_kontaktu()
 {
-		krotkie();
-		krotkie();
-		krotkie();
-		dlugie();
-		krotkie();
-		dlugie();
-		spacja();
+  krotkie();
+  krotkie();
+  krotkie();
+  dlugie();
+  krotkie();
+  dlugie();
+  spacja();
 }
 
 void _miedzynarodowy_sygnal_alarmowy_SOS()
 {
-		krotkie();
-		krotkie();
-		krotkie();
-		dlugie();
-		dlugie();
-		dlugie();
-		krotkie();
-		krotkie();
-		krotkie();
-		spacja();
+  krotkie();
+  krotkie();
+  krotkie();
+  dlugie();
+  dlugie();
+  dlugie();
+  krotkie();
+  krotkie();
+  krotkie();
+  spacja();
 }
 
 
+void beepString(const char beepstring[])
+{
+
+  for(int i=0; i<sizeof(beepstring); ++i)
+    {
+      switch(beepstring[i])
+	{
+
+	case 'a':
+	case 'A':
+	  _A();
+	  break;
+
+	case 'b':
+	case 'B':
+	  _B(); break;
+
+	case 'c':
+	case 'C':
+	  _C(); break;
+
+	case 'D':
+	case 'd':
+	  _D(); break;
+
+	case 'e':
+	case 'E':
+	  _E(); break;
+
+	case 'f':
+	case 'F':
+	  _F(); break;
+
+	case 'g':
+	case 'G':
+	  _G(); break;
+
+	case 'H':
+	case 'h':
+	  _H(); break;
+
+	case 'i':
+	case 'I':
+	  _I(); break;
+
+	case 'J':
+	case 'j':
+	  _J(); break;
+
+	case 'K':
+	case 'k':
+	  _K(); break;
+
+	case 'l':
+	case 'L':
+	  _L(); break;
+
+	case 'M':
+	case 'm':
+	  _M(); break;
+
+	case 'N':
+	case 'n':
+	  _N(); break;
+
+	case 'o':
+	case 'O':
+	  _O(); break;
+
+	case 'p':
+	case'P':
+	  _P(); break;
+
+	case 'q':
+	case 'Q':
+	  _Q(); break;
+
+	case 'r':
+	case 'R':
+	  _R(); break;
+
+	case 't':
+	case 'T':
+	  _T(); break;
+
+	case 's':
+	case 'S':
+	  _S(); break;
+
+	case 'u':
+	case 'U':
+	  _U(); break;
+
+	case 'w':
+	case 'W':
+	  _W(); break;
+
+	case 'x':
+	case 'X':
+	  _X(); break;
+
+	case 'y':
+	case 'Y':
+	  _Y(); break;
+
+	case 'z':
+	case 'Z':
+	  _Z(); break;
+	case '.':
+	  _kropka();
+	  break;
+	case ',':
+	  _przecinek();
+	  break;
+	  //	case '':
+	  // _pojedynczy_aspostrof();
+	  // break;
+	case '"':
+	  _cudzyslow();
+	  break;
+
+	case '_':
+
+	  _podkreslenie();
+	  break;
+	case ';':
+	  _srednik();
+	  break;
+	case '!':
+	  _wyrzyknik();
+	  break;
+
+	case '-':
+	  _myslnik();
+	  break;
+
+	case '+':
+	  plus();
+	  break;
+	case '/':
+	  _ukosnik();
+	  break;
+	case '(':
+	  _nawias_otwierajacy();
+	  break;
+	case ')':
+	  _nawias_zamykajacy();
+	  break;
+	case '=':
+
+	  _znak_rownosci();
+	  break;
+	case '@':
+	  _malpa();
+	  break;
+	default:
+	  _spacja();
+	  break;
+	  
+	}
+      
+    }
+  
+  
+}
+
+
+
+}
 //
 //  Main Program
 // 
 int main(void) {
-	static int ye;			
+  static int ye;			
   AT91C_BASE_PMC->PMC_PCER  = (1 << AT91C_ID_PIOB);
 
-BUZ_INIT;	//inicjacja do glosnika
+  BUZ_INIT;	//inicjacja do glosnika
 	
-	// ARM7X256 Leds Definition
+  // ARM7X256 Leds Definition
 
 
   // Enable the Clock of the PIO
@@ -856,41 +1029,58 @@ BUZ_INIT;	//inicjacja do glosnika
 	
   
   // Initialize SPI interface to LCD
-   InitSpi();
+  InitSpi();
 
   // Init LCD
-   InitLcd();
+  InitLcd();
 
-	// clear the screen
-   LCDClearScreen();
+  // clear the screen
+  LCDClearScreen();
 
-	owInit(); //inicjzacja interfejsu OneWire
+  owInit(); //inicjzacja interfejsu OneWire
 	
-	//----------------------MORS------------------
+  //----------------------MORS------------------
 		
-	while(1)
+  while(1)
+    {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      if(LEFT_KEY_DOWN)
 	{
-		if(LEFT_KEY_DOWN)
-		{
-				_miedzynarodowy_sygnal_alarmowy_SOS();
-				//dd=600;
-				//Voice(t,dd);
-		}
-		if(RIGHT_KEY_DOWN)
-		{
-				_D();
-				_A();
-				_M();
-				_I();
-				_A();
-				_N();
-				//dd=120;
-				//Voice(t,dd);
-		}
-	
-	
-	
+	  _miedzynarodowy_sygnal_alarmowy_SOS();
+	  //dd=600;
+	  //Voice(t,dd);
 	}
+      if(RIGHT_KEY_DOWN)
+	{
+	  _D();
+	  _A();
+	  _M();
+	  _I();
+	  _A();
+	  _N();
+	  //dd=120;
+	  //Voice(t,dd);
+	}
+	
+	
+	
+    }
   // draw a filled box
   //LCDSetRect(10, 10, 40, 40, FILL, RED);
   //LCDSetRect(10, 50, 40, 80, FILL, GREEN);
@@ -900,48 +1090,48 @@ BUZ_INIT;	//inicjacja do glosnika
   // draw a string
   //LCDPutStr("Hello world", 15, 15, LARGE, PINK, BLACK);
 
-/*	while(1)
+  /*	while(1)
 	{
 	LCDSetRect(104, a+10, 129, a+40, NOFILL, GREEN);
-		LCDSetRect(104, a+11, 129, a+16, NOFILL, GREEN);
-		LCDSetRect(104, a+34, 129, a+39, NOFILL, GREEN);
-  LCDSetRect(104, a+23, 84, a+27, NOFILL, GREEN);
+	LCDSetRect(104, a+11, 129, a+16, NOFILL, GREEN);
+	LCDSetRect(104, a+34, 129, a+39, NOFILL, GREEN);
+	LCDSetRect(104, a+23, 84, a+27, NOFILL, GREEN);
 		
 	if(LEFT_KEY_DOWN && a>=10)
 	{
-			a=a-10;
+	a=a-10;
 	}
 	if(RIGHT_KEY_DOWN && a<=70)
 	{
-       a=a+10;             
-  }
+	a=a+10;             
+	}
 	
 	U=GetAdcChanel(ADC_CHN_7);
 	U=((U*3.3)/1023);
-		if(U>=0 && U<=1)
-			{		
-				szyb=2;
-				BUZ_ON;
-				delay_us(100); //Generuje dzwiek
-				BUZ_OFF;
-				delay_us(100);
-			}
-	 if(U>=1 && U<=2)
-			{		
-				szyb=4;
-				BUZ_ON;
-				delay_us(600); //Generuje dzwiek
-				BUZ_OFF;
-				delay_us(600);
-			}
+	if(U>=0 && U<=1)
+	{		
+	szyb=2;
+	BUZ_ON;
+	delay_us(100); //Generuje dzwiek
+	BUZ_OFF;
+	delay_us(100);
+	}
+	if(U>=1 && U<=2)
+	{		
+	szyb=4;
+	BUZ_ON;
+	delay_us(600); //Generuje dzwiek
+	BUZ_OFF;
+	delay_us(600);
+	}
 	if(U>=2 && U<=3.3)
-			{		
-				szyb=6;
-				BUZ_ON;
-				delay_us(1100); //Generuje dzwiek
-				BUZ_OFF;
-				delay_us(1100);
-			}
+	{		
+	szyb=6;
+	BUZ_ON;
+	delay_us(1100); //Generuje dzwiek
+	BUZ_OFF;
+	delay_us(1100);
+	}
 	sprintf(s, "speed+%i", szyb);
 	LCDPutStr(s, 1, 0, SMALL, WHITE, BLACK);
 			
@@ -949,47 +1139,47 @@ BUZ_INIT;	//inicjacja do glosnika
 	i=i+5;
 	if(i>=131){i=0;}
 	if(dr+i>=0 && dr+i<=20)
-		{		
-				LCDSetRect(0, 0, 20, 2, FILL, CYAN);
-				LCDSetRect(0, 127, 20, 129, FILL, CYAN);
-		}
-  if(dr+i>=21 && dr+i<=40)
-		{		
-				LCDSetRect(0, 0, 40, 2, FILL, CYAN);
-				LCDSetRect(0, 127, 40, 129, FILL, CYAN);
-		}
+	{		
+	LCDSetRect(0, 0, 20, 2, FILL, CYAN);
+	LCDSetRect(0, 127, 20, 129, FILL, CYAN);
+	}
+	if(dr+i>=21 && dr+i<=40)
+	{		
+	LCDSetRect(0, 0, 40, 2, FILL, CYAN);
+	LCDSetRect(0, 127, 40, 129, FILL, CYAN);
+	}
 	if(dr+i>=41 && dr+i<=60)
-		{		
-				LCDSetRect(20, 0, 60, 2, FILL, CYAN);
-				LCDSetRect(20, 127, 60, 129, FILL, CYAN);
-		}
-  if(dr+i>=61 && dr+i<=80)
-		{		
-				LCDSetRect(40, 0, 80, 2, FILL, CYAN);
-				LCDSetRect(40, 127, 80, 129, FILL, CYAN);
-		}
-  if(dr+i>=81 && dr+i<=100)
-		{		
-				LCDSetRect(60, 0, 100, 2, FILL, CYAN);
-				LCDSetRect(60, 127, 100, 129, FILL, CYAN);
-		}
-  if(dr+i>=101 && dr+i<=120)
-		{		
-				LCDSetRect(80, 0, 120, 2, FILL, CYAN);
-				LCDSetRect(80, 127, 120, 129, FILL, CYAN);
-		}
+	{		
+	LCDSetRect(20, 0, 60, 2, FILL, CYAN);
+	LCDSetRect(20, 127, 60, 129, FILL, CYAN);
+	}
+	if(dr+i>=61 && dr+i<=80)
+	{		
+	LCDSetRect(40, 0, 80, 2, FILL, CYAN);
+	LCDSetRect(40, 127, 80, 129, FILL, CYAN);
+	}
+	if(dr+i>=81 && dr+i<=100)
+	{		
+	LCDSetRect(60, 0, 100, 2, FILL, CYAN);
+	LCDSetRect(60, 127, 100, 129, FILL, CYAN);
+	}
+	if(dr+i>=101 && dr+i<=120)
+	{		
+	LCDSetRect(80, 0, 120, 2, FILL, CYAN);
+	LCDSetRect(80, 127, 120, 129, FILL, CYAN);
+	}
 	if(dr+i>=121 && dr+i<=131)
-		{		
-				LCDSetRect(100, 0, 120, 2, FILL, CYAN);
-				LCDSetRect(100, 127, 120, 129, FILL, CYAN);
-		}
+	{		
+	LCDSetRect(100, 0, 120, 2, FILL, CYAN);
+	LCDSetRect(100, 127, 120, 129, FILL, CYAN);
+	}
 	//sz=rand()
 	
 	
 	*/	
 		
 		
-	LCDClearScreen();
-//	}
+  LCDClearScreen();
+  //	}
 	
-  }
+}
